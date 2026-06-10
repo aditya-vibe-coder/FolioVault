@@ -1,0 +1,21 @@
+{
+  "name": "FolioVault",
+  "short_name": "FolioVault",
+  "description": "Privacy-first Indian investment portfolio tracker with accurate XIRR, AI portfolio coach, and zero-knowledge encrypted backups.",
+  "start_url": "/app/dashboard",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["finance", "productivity"],
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

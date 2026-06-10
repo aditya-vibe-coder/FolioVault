@@ -1,0 +1,19 @@
+{
+  "name": "FolioVault",
+  "short_name": "FolioVault",
+  "description": "Privacy-first Indian investment portfolio tracker",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "lang": "en-IN",
+  "categories": ["finance", "productivity"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* ────────────────────────────────────────────────────────────────────────────
+   Tailwind v4: opt back into CLASS-based dark mode (the v3 default).
+   Without this directive, `dark:` variants only respond to the user's
+   OS-level `prefers-color-scheme: dark`. By telling Tailwind to treat the
+   `.dark` class on any ancestor (we put it on <html>) as the dark trigger,
+   manual toggles from `applyTheme()` actually take effect.
+   ──────────────────────────────────────────────────────────────────────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ────────────────────────────────────────────────────────────────────────────
+   Tailwind v4 — in-between color shades used by the existing JSX.
+   These are extensions of the standard palettes (50, 100, 200, … 950) so
+   utility classes like `text-slate-450`, `bg-emerald-850` resolve correctly.
+   ──────────────────────────────────────────────────────────────────────────── */
+@theme {
+  /* Slate (cool grey) */
+  --color-slate-105: #EEF1F6;
+  --color-slate-150: #E2E8F0;
+  --color-slate-205: #D1D8E3;
+  --color-slate-250: #C7D0DC;
+  --color-slate-350: #8B97AB;
+  --color-slate-405: #6E7B91;
+  --color-slate-420: #637184;
+  --color-slate-450: #5A6779;
+  --color-slate-455: #586478;
+  --color-slate-550: #485569;
+  --color-slate-650: #2E3D54;
+  --color-slate-655: #2C3B52;
+  --color-slate-750: #1F2A3D;
+  --color-slate-805: #182236;
+  --color-slate-806: #182134;
+  --color-slate-820: #141E32;
+  --color-slate-850: #131C30;
+  --color-slate-901: #0A0F1D;
+
+  /* Blue */
+  --color-blue-105: #E6EFFC;
+  --color-blue-450: #5588D4;
+  --color-blue-550: #3B6FC4;
+  --color-blue-650: #1D4ED8;
+  --color-blue-655: #1C49CC;
+
+  /* Emerald */
+  --color-emerald-105: #E6FBF1;
+  --color-emerald-550: #05AB6B;
+  --color-emerald-850: #064E3B;
+  --color-emerald-850: #064E3B;
+  --color-emerald-901: #022C22;
+
+  /* Orange */
+  --color-orange-105: #FFEDD5;
+  --color-orange-505: #FB923C;
+  --color-orange-650: #EA580C;
+
+  /* Red */
+  --color-red-505: #FB7185;
+  --color-red-650: #E11D48;
+
+  /* Purple */
+  --color-purple-105: #F3E8FF;
+
+  /* Rose */
+  --color-rose-450: #FB7185;
+  --color-rose-505: #F43F5E;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   Custom keyframes & utilities
+   ──────────────────────────────────────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@layer utilities {
+  .animate-fade-in   { animation: fade-in 0.35s ease-out both; }
+  .scrollbar-thin    { scrollbar-width: thin; }
+  .scrollbar-thin::-webkit-scrollbar { height: 6px; width: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.35);
+    border-radius: 9999px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   Global resets & base typography
+   ──────────────────────────────────────────────────────────────────────────── */
+html, body, #root { height: 100%; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Range input — make them look intentional in light + dark mode */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #10B981;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+input[type="range"]::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #10B981;
+  cursor: pointer;
+  border: 2px solid white;
+}
+.dark input[type="range"]::-webkit-slider-thumb { border-color: #0F172A; }
+.dark input[type="range"]::-moz-range-thumb     { border-color: #0F172A; }

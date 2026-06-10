@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /app
+Disallow: /app/dashboard
+Disallow: /app/holdings
+Disallow: /app/import
+Disallow: /app/analytics
+Disallow: /app/report
+Disallow: /app/coach
+Disallow: /app/activity
+Disallow: /app/insurance
+Disallow: /app/loans
+Disallow: /app/settings
+
+Sitemap: https://foliovault.harmnix.com/sitemap.xml

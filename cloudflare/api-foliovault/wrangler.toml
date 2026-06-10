@@ -1,0 +1,28 @@
+name = "api-foliovault"
+main = "src/index.ts"
+compatibility_date = "2025-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+# Custom-domain binding happens via the `routes` block.  We use a route
+# pattern so any path under the API subdomain reaches this Worker.
+# (`*.harmnix.com/api/*` is the natural place for it.)
+#
+# Note: routes can be added later via `wrangler routes add` or the
+# Cloudflare dashboard.  They are intentionally not committed here because
+# the route ID is per-zone.
+
+[vars]
+ALLOWED_ORIGINS = "https://YOUR_DOMAIN.com,http://localhost:3000,http://localhost:5173"
+GEMINI_MODEL = "gemini-2.5-flash"
+ALLOWED_MODEL_OVERRIDES = "gemini-2.5-flash,gemini-2.5-pro,gemini-2.5-flash-lite,gemini-3.5-flash,gemini-3-pro-preview,gemini-3-flash-preview,gemini-3.1-pro-preview,gemini-3.1-flash-lite-preview"
+
+# Secrets (set with `wrangler secret put NAME`):
+#   GEMINI_API_KEY     - default Google Gemini key
+#   PRO_FALLBACK_KEYS  - comma-separated list of dev Pro keys
+#   RAZORPAY_KEY_ID    - public Razorpay key (for /api/create-order)
+#   RAZORPAY_KEY_SECRET- Razorpay secret (for HMAC signature)
+
+# KV namespace for cloud backup storage (zero-knowledge encrypted blobs).
+[[kv_namespaces]]
+binding = "BACKUPS"
+id = "YOUR_KV_NAMESPACE_ID"

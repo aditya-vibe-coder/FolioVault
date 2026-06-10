@@ -1,0 +1,30 @@
+# Cloudflare Pages response headers
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+
+# Block indexing of all private app routes (sends X-Robots-Tag before HTML
+# body is parsed, so Googlebot respects it on the very first crawl —
+# before React Helmet has hydrated)
+/app/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+
+# Long-cache static assets (built by Vite with content-hashed filenames)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/index-*.css
+  Cache-Control: public, max-age=31536000, immutable
+/assets/index-*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# Sitemap + robots: short cache so updates propagate quickly
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+/robots.txt
+  Cache-Control: public, max-age=3600
+
+# Security headers for everything
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
